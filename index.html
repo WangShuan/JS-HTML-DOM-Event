@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>關於事件</title>
+    <script src="./fn.js"></script>
+    <style>
+        h3 {
+            color: red;
+        }
+
+        #A {
+            width: 200px;
+            background-color: rgb(18, 170, 170);
+        }
+
+        #B {
+            width: 100px;
+            height: 50px;
+            background-color: turquoise;
+            margin: 0 auto;
+        }
+
+        #div1 {
+            width: 200px;
+            height: 100px;
+            background-color: rgb(240, 207, 164);
+        }
+
+        #div2 {
+            width: 100px;
+            height: 50px;
+            background-color: bisque;
+        }
+
+        #move {
+            width: 100px;
+            height: 50px;
+            background-color: cornflowerblue;
+            position: absolute;
+            left: 0;
+            top: 630px;
+        }
+
+        #V1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        #V2 {
+            width: 80px;
+            height: 80px;
+            background-color: orange;
+        }
+
+        #V3 {
+            width: 60px;
+            height: 60px;
+            background-color: gold;
+        }
+
+        #V4 {
+            width: 40px;
+            height: 40px;
+            background-color: green;
+        }
+
+        #V5 {
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+        }
+
+        #search {
+            width: 150px;
+            height: 230px;
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            width: 150px;
+            border: 1px solid blue;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            width: 150px;
+            list-style: none;
+            border: 1px solid gray;
+            border-top: none;
+            margin: 0;
+            padding: 0;
+            display: none;
+        }
+
+        li {
+            width: 140px;
+            height: 30px;
+            line-height: 30px;
+            margin: 0;
+            padding: 0;
+            padding-left: 10px;
+        }
+
+        .active {
+            background: gray;
+            color: white;
+        }
+
+        #box {
+            width: 70px;
+            margin: 20px;
+        }
+
+        #bt {
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid gray;
+            text-align: center;
+        }
+
+        #content {
+            width: 100px;
+            height: 120px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 1400px;
+            text-align: center;
+            left: -100px;
+        }
+
+        #content a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            line-height: 30px;
+        }
+
+        #title {
+            width: 30px;
+            height: 60px;
+            background: black;
+            color: white;
+            position: absolute;
+            left: 100px;
+            top: 25px;
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .mt {
+            margin-top: 150px;
+        }
+
+        table {
+            width: 700px;
+            height: 300px;
+            border: 1px solid gray;
+            margin: 30px auto;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        td {
+            border: 1px solid gray;
+            width: 140px;
+            height: 50px;
+        }
+
+        .input {
+            width: 138px;
+            height: 50px;
+            border: 0;
+            background: yellowgreen;
+            font-size: 18px;
+        }
+
+        #bgc {
+            width: 300px;
+            height: 250px;
+            background-color: black;
+            padding: 30px;
+        }
+
+        #box2 {
+            width: 150px;
+            border: 1px solid white;
+            color: white;
+            margin: 10px auto;
+        }
+
+        #myH3 {
+            line-height: 40px;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        #myUl {
+            display: none;
+        }
+
+        #myUl>li {
+            list-style: none;
+            border-top: 1px dashed white;
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #V7 {
+            width: 80px;
+            height: 80px;
+            background-color: lightsalmon;
+        }
+
+        #V6 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        #V8 {
+            width: 60px;
+            height: 60px;
+            background-color: lemonchiffon;
+        }
+
+        #V9 {
+            width: 40px;
+            height: 40px;
+            background-color: lightgreen;
+        }
+
+        #V10 {
+            width: 20px;
+            height: 20px;
+            background-color: lightblue;
+        }
+
+        #right {
+            width: 100px;
+            height: 150px;
+            border: 2px solid firebrick;
+            position: absolute;
+            display: none;
+        }
+
+        #moveDiv {
+            width: 100px;
+            height: 50px;
+            background-color: slateblue;
+            position: absolute;
+            left: 200px;
+            top: 630px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>焦點事件 onfocus</h3>
+    <input type="email" id="text">
+    <script>
+        $('text').onfocus = function () {
+            console.log('你在看我嗎？')
+        }
+        $('text').onblur = function () {
+            console.log('你回來點我吧！')
+        }
+    </script>
+
+    <h3>事件對象</h3>
+    IE瀏覽器與谷歌的event都是內置對象 可通過window.event訪問到 <br>
+    其他瀏覽器比如火狐 則為函數傳入的第一個參數為事件對象<br><br>
+    <button type="submit" id="evName">點我看事件對象</button>
+    <script>
+        $('evName').onclick = function (ev) {
+            ev = window.event || ev
+
+            console.log(ev)
+        }
+    </script>
+
+    <h3>事件源</h3>
+    有兩個 div Ａ裡面包著Ｂ 設定Ａ的點擊事件 誰被點擊誰就是事件源<br><br>
+    <div id="A">
+        <div id="B"></div>
+    </div>
+
+    <script>
+        $('A').onclick = function (ev) {
+            var ev = ev || window.event
+            var now = ev.srcElement || ev.target
+            alert(now.id)
+        }
+    </script>
+
+    <h3>鼠標位置(x,y)</h3>
+    第一種：鼠標相對於瀏覽器頁面的位置<br>
+    第二種：鼠標相對於元素的位置<br><br>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+
+    <script>
+        $('div1').onclick = function (ev) {
+            var ev = ev || window.event
+            console.log(ev.clientX) // 相對於瀏覽器的距離
+            console.log(ev.offsetX) // 相對於事件源的距離
+        }
+    </script>
+
+    <h3>鼠標位置小案例：拖動</h3>
+    藍色是利用鼠標位置把元素以左上角為定位拖動，紫色是完整拖曳<br><br>
+    <div id="move"></div>
+    <div id="moveDiv"></div>
+    <script>
+        $('move').onmousedown = function () {
+
+            document.onmousemove = function (ev) {
+                var ev = ev || window.event
+                $('move').style.left = ev.clientX + 'px'
+                $('move').style.top = ev.clientY + 'px'
+            }
+
+            document.onmouseup = function () {
+                document.onmousemove = null
+            }
+        }
+        $('moveDiv').onmousedown = function (ev) {
+            var ev = event || ev
+            var X = ev.offsetX
+            var Y = ev.offsetY
+            document.onmousemove = function (ev) {
+                var ev = ev || window.event
+                $('moveDiv').style.left = ev.clientX - X + 'px'
+                $('moveDiv').style.top = ev.clientY - Y + 'px'
+            }
+
+            document.onmouseup = function () {
+                document.onmousemove = document.onmouseup = null
+            }
+        }
+    </script>
+
+    <br><br><br>
+    <h3>事件冒泡</h3>
+    事件會從當前元素一直往外層(父元素)傳遞 一直傳到window層為止<br><br>
+    <div id="V1">
+        <div id="V2">
+            <div id="V3">
+                <div id="V4">
+                    <div id="V5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('V1').onclick = function () {
+            console.log('我是紅色' + this.getAttribute('id') + ',我是事件冒泡')
+        }
+        $('V2').onclick = function () {
+            console.log('我是橘色' + this.getAttribute('id') + ',我是事件冒泡')
+        }
+        $('V3').onclick = function () {
+            console.log('我是黃色' + this.getAttribute('id') + ',我是事件冒泡')
+        }
+        $('V4').onclick = function () {
+            console.log('我是綠色' + this.getAttribute('id') + ',我是事件冒泡')
+        }
+        $('V5').onclick = function (event) {
+            event = window.event || event
+            event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true // 阻止事件冒泡
+            console.log('我是藍色' + this.getAttribute('id') + ',我是事件冒泡')
+        }
+    </script>
+
+    <h3>冒泡小案例：類似谷歌輸入框</h3>
+    利用焦點來顯示/隱藏列表 點擊 Li 更改輸入框內容<br><br>
+    <div id="search">
+        <input type="text" id="text2" placeholder="请输入要查找的内容" />
+        <ul>
+            <li>HTML學習</li>
+            <li>HTML5</li>
+            <li>HTML5+</li>
+            <li>HTML5 MUI</li>
+            <li>HTML app開發</li>
+            <li>HTML 教學視頻</li>
+            <li>HTML 教程</li>
+        </ul>
+    </div>
+    <script>
+        var aLi = document.getElementsByTagName('li')
+        var oUl = document.getElementsByTagName('ul')[0]
+        $('text2').onfocus = function () {
+            oUl.style.display = 'block'
+        }
+        $('text2').onblur = function () {
+            setTimeout(function () {
+                oUl.style.display = 'none'
+            }, 10)
+        }
+        // 方法一：給所有 Li 添加事件
+        // for(i=0;i<aLi.length;i++){
+        //     aLi[i].onclick=function(){
+        //         $('text2').value = this.innerText
+        //     }
+        // }
+
+        // 方法二：利用冒泡 只給 Ul 添加點擊事件 透過事件源取得當前點擊的元素
+        oUl.onclick = function (ev) {
+            var ev = ev || window.event
+            var now = ev.srcElement || ev.target
+            $('text2').value = now.innerText
+        }
+    </script>
+
+    <h3>冒泡小案例：下拉菜單</h3>
+    點擊功能顯示列表 點擊其他地方隱藏列表<br>
+    <div id="box">
+        <div id="bt">功能</div>
+        <ul id="list">
+            <li>扫一扫</li>
+            <li>付款</li>
+            <li>添加好友</li>
+        </ul>
+    </div>
+
+    <script>
+        var isShow = false
+        $('bt').onclick = function (event) {
+            isShow = !isShow
+            $('list').style.display = isShow ? 'block' : 'none'
+            event = window.event || event
+            event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true // 阻止事件冒泡
+        }
+        // document.onclick = function () {
+        //     $('list').style.display = 'none'
+        //     isShow = false
+        // }
+    </script>
+
+    <h3>冒泡小案例：分享</h3>
+    鼠標移入"分享到"滑出紅色區塊 移出隱藏紅色區塊<br>
+    <div class="mt">
+        <div id="content">
+            <a href="#">LINE keep</a>
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Messenger</a>
+
+            <div id="title">
+                分享到
+            </div>
+        </div>
+    </div>
+    <script>
+        // #content left: 100px 顯示
+        $('content').onmouseover = function () {
+            this.style.left = 0
+        }
+        $('content').onmouseout = function () {
+            this.style.left = '-100px'
+        }
+    </script>
+
+    <h3>冒泡小案例：表格雙擊編輯</h3>
+    利用事件源改變當前被點擊的表格內容<br>
+    <table id="TB">
+        <tr>
+            <td>格子1</td>
+            <td>格子2</td>
+            <td>格子3</td>
+            <td>格子4</td>
+        </tr>
+        <tr>
+            <td>格子1</td>
+            <td>格子2</td>
+            <td>格子3</td>
+            <td>格子4</td>
+        </tr>
+        <tr>
+            <td>格子1</td>
+            <td>格子2</td>
+            <td>格子3</td>
+            <td>格子4</td>
+        </tr>
+        <tr>
+            <td>格子1</td>
+            <td>格子2</td>
+            <td>格子3</td>
+            <td>格子4</td>
+        </tr>
+        <tr>
+            <td>格子1</td>
+            <td>格子2</td>
+            <td>格子3</td>
+            <td>格子4</td>
+        </tr>
+    </table>
+
+    <script>
+        var add = document.createElement('input')
+        add.type = 'text'
+        add.className = 'input'
+        $('TB').ondblclick = function (ev) {
+            var ev = ev || window.event
+            var now = ev.srcElement || ev.target
+            add.value = now.innerText
+            now.innerHTML = ''
+            now.appendChild(add)
+            add.focus()
+            add.onblur = function () {
+                now.innerHTML = this.value
+            }
+        }
+    </script>
+
+    <h3>冒泡小案例：仿 select 效果</h3>
+    利用事件源 改變當前 li 樣式<br><br>
+    <div id="bgc">
+        <div id="box2">
+            <h3 id="myH3">梦幻西游</h3>
+            <ul id="myUl">
+                <li class="active"> 梦幻西游 </li>
+                <li> 魔兽世界(国服) </li>
+                <li> 热血江湖 </li>
+                <li> 大话西游 </li>
+                <li> 传奇 </li>
+                <li> 奇迹 </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var currentLi = null
+        var isShow2 = false
+        $('myH3').onclick = function (ev) {
+            ev = event || ev
+            ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true // 阻止事件冒泡
+            isShow2 = !isShow2
+            $('myUl').style.display = isShow2 ? 'block' : 'none'
+        }
+        $('myUl').onmouseover = function (ev) {
+            ev = ev || window.event
+            var now = ev.srcElement || ev.target
+            if (now.tagName == 'LI') {
+                if (currentLi != null) {
+                    currentLi.className = '';
+                }
+                currentLi = now;
+                currentLi.className = 'active';
+                now.onclick = function () {
+                    $('myH3').innerText = now.innerText
+                }
+            }
+        }
+        // document.onclick = function () {
+        //     $('myUl').style.display = 'none'
+        //     isShow2 = false
+        //     $('list').style.display = 'none'
+        //     isShow = false
+        // }
+    </script>
+
+    <h3>事件捕獲(addEventListener)</h3>
+    事件捕獲就是事件冒泡的相反<br>
+    冒泡是由當前點擊一直往外層傳遞<br>
+    捕獲則是由外層往裡傳<br>
+    addEventListener(事件,函數,布爾值) <br>
+    當布爾值為 true 表示事件捕獲，為 false 則表示事件冒泡 <br>
+    普通事件函數(EX:onclick)默認都是事件冒泡 <br><br>
+    <div id="V6">
+        <div id="V7">
+            <div id="V8">
+                <div id="V9">
+                    <div id="V10"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('V6').addEventListener('click', function () {
+            console.log('我是粉色' + this.getAttribute('id') + ',我是事件捕獲')
+        }, true)
+        $('V7').addEventListener('click', function () {
+            console.log('我是橘色' + this.getAttribute('id') + ',我是事件捕獲')
+        }, true)
+        $('V8').addEventListener('click', function () {
+            console.log('我是黃色' + this.getAttribute('id') + ',我是事件捕獲')
+        }, true)
+        $('V9').addEventListener('click', function () {
+            console.log('我是綠色' + this.getAttribute('id') + ',我是事件捕獲')
+        }, true)
+        $('V10').addEventListener('click', function () {
+            console.log('我是藍色' + this.getAttribute('id') + ',我是事件捕獲')
+        }, true)
+
+        $('V6').onclick = function () {
+            console.log('我是粉色' + this.getAttribute('id') + ',我是事件捕獲')
+        }
+        $('V7').onclick = function () {
+            console.log('我是橘色' + this.getAttribute('id') + ',我是事件冒泡(默認)')
+        }
+        $('V8').onclick = function () {
+            console.log('我是黃色' + this.getAttribute('id') + ',我是事件冒泡(默認)')
+        }
+        $('V9').onclick = function () {
+            console.log('我是綠色' + this.getAttribute('id') + ',我是事件冒泡(默認)')
+        }
+        $('V10').onclick = function () {
+            console.log('我是藍色' + this.getAttribute('id') + ',我是事件冒泡(默認)')
+        }
+        // 阻止事件的方式1
+        // $('V6').removeEventListener(事件名稱,函數名稱)
+        // 阻止事件的方式2
+        // $('V6').onclick=null
+    </script>
+
+    <h3>鍵盤事件</h3>
+    點擊回車自動跳到下一個輸入框 再點擊回車自動按下按鈕<br><br>
+    <input type="text" placeholder="User Name" id="user"><br>
+    <input type="password" placeholder="password" id="ps"><br>
+    <input type="button" id="enter" value="login"><br>
+
+    <script>
+        var login = function () {
+            alert($('user').value + '已登入')
+        }
+        $('enter').onclick = login
+        $('user').onkeydown = function (ev) {
+            ev = event || ev
+            if (ev.keyCode == 13) {
+                $('ps').focus()
+            }
+        }
+        $('ps').onkeydown = function (ev) {
+            ev = event || ev
+            if (ev.keyCode == 13) {
+                login()
+            }
+        }
+    </script>
+
+    <h3>默認事件(EX:右鍵)</h3>
+    用一個紅色邊框的 div 取代原本點擊右鍵所產生的列表
+    <div id="right"></div>
+
+    <script>
+        // 點擊右鍵
+        document.oncontextmenu = function (ev) {
+            var ev = ev || event
+            var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+            $('right').style.display = 'block'
+            $('right').style.left = ev.clientX + 'px'
+            $('right').style.top = ev.clientY + scrollTop + 'px'
+            // 阻止默認事件方法1
+            // ev.preventDefault ? ev.preventDefault() : ev.returnValue = false
+            // 阻止默認事件方法2
+            return false
+        }
+
+        document.onclick = function () {
+            // 因為 document.onclick 重複使用無法觸發 所以集中在最後這裏一次使用
+            // 這是第446行 功能列表的隱藏
+            $('list').style.display = 'none'
+            isShow = false
+
+            //這是第566行 遊戲列表的隱藏
+            $('myUl').style.display = 'none'
+            isShow2 = false
+
+            // 這是上面點擊右鍵後的隱藏
+            $('right').style.display = 'none'
+        }
+    </script>
+
+    <h3></h3>
+</body>
+
+</html>
